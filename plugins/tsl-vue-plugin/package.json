@@ -1,0 +1,25 @@
+{
+  "name": "tsl-vue-plugin",
+  "version": "0.1.0",
+  "description": "TypeScript Lite Vue集成插件",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/typescript-lite/tsl-vue-plugin.git"
+  },
+  "keywords": [
+    "typescript",
+    "lite",
+    "vue",
+    "plugin",
+    "type-checking"
+  ],
+  "author": "TypeScript Lite Team",
+  "license": "MIT",
+  "dependencies": {
+    "typescript-lite": "^0.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  }
+}

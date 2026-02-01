@@ -1,0 +1,45 @@
+# 测试文件
+test/
+*.test.js
+*.spec.js
+
+# 示例项目
+examples/
+
+# IDE配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# 文档（README.md除外）
+docs/
+*.md
+!README.md
+
+# 临时文件
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 构建输出
+dist/
+build/
+
+# 依赖
+node_modules/
+
+# 配置文件
+.eslintrc
+.prettierrc
+.editorconfig
+
+# 其他
+.env
+.env.local
+.env.*.local

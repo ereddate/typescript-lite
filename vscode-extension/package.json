@@ -1,0 +1,74 @@
+{
+  "name": "typescript-lite",
+  "displayName": "TypeScript Lite",
+  "description": "轻量级TypeScript类型检查工具的VS Code集成",
+  "version": "0.1.0",
+  "publisher": "typescript-lite",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/typescript-lite/vscode-extension.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [".js", ".jsx"]
+      },
+      {
+        "id": "typescript",
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "TypeScript Lite",
+      "properties": {
+        "typescript-lite.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用TypeScript Lite类型检查"
+        },
+        "typescript-lite.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "启用调试模式"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "glob": "^8.1.0",
+    "mocha": "^10.1.0",
+    "typescript": "^5.0.0",
+    "@vscode/test-electron": "^2.3.0"
+  },
+  "dependencies": {
+    "typescript-lite": "file:../"
+  }
+}

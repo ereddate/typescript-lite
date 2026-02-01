@@ -1,0 +1,25 @@
+{
+  "name": "tsl-vite-plugin",
+  "version": "0.1.0",
+  "description": "TypeScript Lite Vite集成插件",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/typescript-lite/tsl-vite-plugin.git"
+  },
+  "keywords": [
+    "typescript",
+    "lite",
+    "vite",
+    "plugin",
+    "type-checking"
+  ],
+  "author": "TypeScript Lite Team",
+  "license": "MIT",
+  "dependencies": {
+    "typescript-lite": "^0.1.0"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.0"
+  }
+}
