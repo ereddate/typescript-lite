@@ -1,6 +1,6 @@
-// React集成测试用例
+// React集成测试
 
-const tsl = require('../src/index');
+import tsl from '../src/index.js';
 
 // 测试React TypeScript文件
 const reactTsxCode = `
@@ -95,8 +95,8 @@ export { count, add };
 }
 
 // 运行测试
-if (require.main === module) {
+if (import.meta.url.includes('react-test.js')) {
   testReactPlugin();
 }
 
-module.exports = { testReactPlugin };
+export { testReactPlugin };

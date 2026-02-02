@@ -48,7 +48,13 @@ function load(configPath) {
   }
 }
 
-module.exports = {
+export {
+  defaultConfig,
+  merge,
+  load
+};
+
+export default {
   defaultConfig,
   merge,
   load

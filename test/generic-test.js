@@ -1,6 +1,6 @@
-// 泛型支持测试用例
+// 泛型测试
 
-const tsl = require('../src/index');
+import tsl from '../src/index.js';
 
 // 测试用例集合
 const genericTestCases = [
@@ -95,8 +95,8 @@ function runGenericTests() {
 }
 
 // 运行测试
-if (require.main === module) {
+if (import.meta.url.includes('generic-test.js')) {
   runGenericTests();
 }
 
-module.exports = { runGenericTests };
+export { runGenericTests };

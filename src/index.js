@@ -1,10 +1,10 @@
 // TypeScript Lite 主入口文件
 
-const parser = require('./parser');
-const checker = require('./checker');
-const generator = require('./generator');
-const reporter = require('./reporter');
-const config = require('./config');
+import parser from './parser/index.js';
+import checker from './checker/index.js';
+import generator from './generator/index.js';
+import reporter from './reporter/index.js';
+import config from './config/index.js';
 
 // 缓存配置
 const CACHE_CONFIG = {
@@ -353,7 +353,20 @@ function clearCache() {
   console.log('TypeScript Lite 缓存已清空');
 }
 
-module.exports = {
+export {
+  compile,
+  check,
+  compileFile,
+  checkFile,
+  clearCache,
+  parser,
+  checker,
+  generator,
+  reporter,
+  config
+};
+
+export default {
   compile,
   check,
   compileFile,

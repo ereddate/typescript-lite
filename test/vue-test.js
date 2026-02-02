@@ -1,6 +1,6 @@
-// Vue集成测试用例
+// Vue集成测试
 
-const tsl = require('../src/index');
+import tsl from '../src/index.js';
 
 // 测试Vue单文件组件
 const vueComponent = `
@@ -110,8 +110,8 @@ export { name, logMessage };
 }
 
 // 运行测试
-if (require.main === module) {
+if (import.meta.url.includes('vue-test.js')) {
   testVuePlugin();
 }
 
-module.exports = { testVuePlugin };
+export { testVuePlugin };

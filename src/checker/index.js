@@ -1,6 +1,6 @@
 // 类型检查器模块
 
-const estraverse = require('estraverse');
+import estraverse from 'estraverse';
 
 /**
  * 从代码中提取变量类型注解
@@ -365,7 +365,15 @@ function isTypeCompatible(expectedType, actualType, interfaces = {}, typeAliases
   return typeMap[expectedType]?.includes(actualType) || false;
 }
 
-module.exports = {
+export {
+  check,
+  getActualType,
+  isTypeCompatible,
+  extractVariableTypes,
+  extractFunctionTypes
+};
+
+export default {
   check,
   getActualType,
   isTypeCompatible,

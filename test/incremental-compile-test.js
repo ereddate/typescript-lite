@@ -1,8 +1,13 @@
-// 增量编译测试用例
+// 增量编译测试
 
-const tsl = require('../src/index');
-const fs = require('fs');
-const path = require('path');
+import tsl from '../src/index.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// 获取当前目录路径（ES 模块方式）
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // 测试文件路径
 const testFilePath = path.join(__dirname, 'test-file.ts');
@@ -142,8 +147,8 @@ function runIncrementalCompileTests() {
 }
 
 // 运行测试
-if (require.main === module) {
+if (import.meta.url.includes('incremental-compile-test.js')) {
   runIncrementalCompileTests();
 }
 
-module.exports = { runIncrementalCompileTests };
+export { runIncrementalCompileTests };

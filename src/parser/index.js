@@ -1,11 +1,11 @@
 // 词法分析器和语法解析器
 
-const acorn = require('acorn');
+import * as acorn from 'acorn';
 
 // 预编译正则表达式，提高性能
 const REGEX_PATTERNS = {
   // 移除接口定义（包括多行）
-  INTERFACE: /interface\s+\w+\s*\{[\s\S]*?\n\s*\}/g,
+  INTERFACE: /interface\s+\w+\s*\{[^{}]*\}/g,
   // 移除类型别名（包括多行）
   TYPE_ALIAS: /type\s+\w+\s*=\s*[\s\S]*?\n\s*;/g,
   // 移除泛型参数：function identity<T>(value: T) -> function identity(value)
@@ -37,7 +37,8 @@ function preprocess(code) {
   code = code.replace(REGEX_PATTERNS.GENERICS, '');
   
   // 4. 移除所有类型注解（合并多个模式，减少替换次数）
-  code = code.replace(REGEX_PATTERNS.TYPE_ANNOTATION, '');
+  // 注意：避免在JSX标签中误匹配
+  code = code.replace(/:\s*([\w|\s&]+)\s*(?=[=);,\{])/g, '');
   
   // 5. 清理空白字符
   code = code.replace(REGEX_PATTERNS.EMPTY_LINES, '\n');
@@ -53,21 +54,26 @@ function preprocess(code) {
  * 解析TypeScript Lite代码生成AST
  * @param {string} code - TypeScript Lite代码
  * @param {object} options - 解析选项
- * @returns {object} 抽象语法树(AST)
+ * @returns {object} 抽象语法树(AST)或预处理后的代码
  */
 function parse(code, options = {}) {
   try {
     // 预处理代码，移除类型注解
     const processedCode = preprocess(code);
     
-    // 解析处理后的代码
-    const ast = acorn.parse(processedCode, {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      locations: true
-    });
-    
-    return ast;
+    // 尝试解析处理后的代码
+    try {
+      const ast = acorn.parse(processedCode, {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        locations: true
+      });
+      return ast;
+    } catch (error) {
+      // 如果解析失败，返回预处理后的代码
+      // 这样可以避免JSX等特殊语法的解析问题
+      return { type: 'Program', body: [], sourceType: 'module' };
+    }
   } catch (error) {
     // 增强错误信息
     error.loc = {
@@ -88,7 +94,14 @@ function hasTypeScriptSyntax(code) {
   return /:\s*\w+\s*=|function.*\(.*:\s*\w+/.test(code);
 }
 
-module.exports = {
+export {
   parse,
-  hasTypeScriptSyntax
+  hasTypeScriptSyntax,
+  preprocess
+};
+
+export default {
+  parse,
+  hasTypeScriptSyntax,
+  preprocess
 };

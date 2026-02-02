@@ -2,12 +2,12 @@
 
 // TypeScript Lite 命令行工具
 
-const fs = require('fs');
-const path = require('path');
-const minimist = require('minimist');
-const chalk = require('chalk');
-const tsl = require('../src/index');
-const reporter = require('../src/reporter');
+import fs from 'fs';
+import path from 'path';
+import minimist from 'minimist';
+import chalk from 'chalk';
+import * as tsl from '../src/index.js';
+import * as reporter from '../src/reporter/index.js';
 
 // 解析命令行参数
 const argv = minimist(process.argv.slice(2), {
@@ -63,7 +63,9 @@ TypeScript Lite 命令行工具
 
 // 显示版本信息
 function showVersion() {
-  const pkg = require('../package.json');
+  const pkgPath = path.join(__dirname, '..', 'package.json');
+  const pkgContent = fs.readFileSync(pkgPath, 'utf8');
+  const pkg = JSON.parse(pkgContent);
   console.log(`TypeScript Lite v${pkg.version}`);
 }
 

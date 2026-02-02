@@ -1,6 +1,6 @@
-// 第二阶段综合测试用例
+// 第二阶段测试
 
-const tsl = require('../src/index');
+import tsl from '../src/index.js';
 
 // 测试用例集合
 const phase2TestCases = [
@@ -135,8 +135,8 @@ function runPhase2Tests() {
 }
 
 // 运行测试
-if (require.main === module) {
+if (import.meta.url.includes('phase2-test.js')) {
   runPhase2Tests();
 }
 
-module.exports = { runPhase2Tests };
+export { runPhase2Tests };

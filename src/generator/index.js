@@ -1,7 +1,7 @@
 // 代码生成器模块
 
-const estraverse = require('estraverse');
-const escodegen = require('escodegen');
+import estraverse from 'estraverse';
+import escodegen from 'escodegen';
 
 /**
  * 生成JavaScript代码，移除类型注解
@@ -69,7 +69,12 @@ function removeTypeAnnotations(ast) {
   });
 }
 
-module.exports = {
+export {
+  generate,
+  removeTypeAnnotations
+};
+
+export default {
   generate,
   removeTypeAnnotations
 };

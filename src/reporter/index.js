@@ -1,6 +1,6 @@
 // 错误报告系统
 
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 /**
  * 获取错误修复建议
@@ -146,7 +146,14 @@ function getErrorTypes(errors) {
   return types;
 }
 
-module.exports = {
+export {
+  formatErrors,
+  reportErrors,
+  getErrorSummary,
+  getErrorTypes
+};
+
+export default {
   formatErrors,
   reportErrors,
   getErrorSummary,

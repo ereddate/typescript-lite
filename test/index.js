@@ -1,7 +1,7 @@
 // 测试用例
 
-const tsl = require('../src/index');
-const reporter = require('../src/reporter');
+import tsl from '../src/index.js';
+import reporter from '../src/reporter/index.js';
 
 // 测试用例集合
 const testCases = [

@@ -2,6 +2,7 @@
   "name": "typescript-lite",
   "version": "1.0.0",
   "description": "轻量级TypeScript类型检查工具，保留TypeScript核心功能，提供更轻量的使用体验",
+  "type": "module",
   "main": "src/index.js",
   "bin": {
     "tsl": "bin/tsl.js"
