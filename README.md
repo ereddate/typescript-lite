@@ -135,7 +135,7 @@ if (result.success) {
 ```javascript
 // vite.config.js
 import { defineConfig } from 'vite'
-import { vitePlugin as tslVitePlugin } from 'typescript-lite/vite'
+import { vitePlugin as tslVitePlugin } from 'tsl-vite-plugin'
 
 export default defineConfig({
   plugins: [
@@ -150,11 +150,11 @@ export default defineConfig({
 ### Webpack 集成
 ```javascript
 // webpack.config.js
-const { webpackPlugin: tslWebpackPlugin } = require('typescript-lite/webpack');
+const { webpackPlugin: TslWebpackPlugin } = require('tsl-webpack-plugin');
 
 module.exports = {
   plugins: [
-    new tslWebpackPlugin({
+    new TslWebpackPlugin({
       // 配置选项
       enableIncremental: true  // 启用增量编译
     })

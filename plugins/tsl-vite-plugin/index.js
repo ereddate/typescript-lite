@@ -1,6 +1,6 @@
 // TypeScript Lite Vite集成插件
 
-import tsl from '../../src/index.js';
+import tsl from 'typescript-lite';
 
 // 简单的预处理函数，移除TypeScript Lite语法
 function preprocess(code) {
