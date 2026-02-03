@@ -5,6 +5,7 @@ import checker from './checker/index.js';
 import generator from './generator/index.js';
 import reporter from './reporter/index.js';
 import config from './config/index.js';
+import ParallelCompiler from './parallel-compiler/index.js';
 
 // 缓存配置
 const CACHE_CONFIG = {
@@ -363,7 +364,8 @@ export {
   checker,
   generator,
   reporter,
-  config
+  config,
+  ParallelCompiler
 };
 
 export default {
@@ -376,5 +378,6 @@ export default {
   checker,
   generator,
   reporter,
-  config
+  config,
+  ParallelCompiler
 };

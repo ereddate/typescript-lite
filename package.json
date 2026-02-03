@@ -5,7 +5,8 @@
   "type": "module",
   "main": "src/index.js",
   "bin": {
-    "tsl": "bin/tsl.js"
+    "tsl": "bin/tsl.js",
+    "tsl-init": "bin/tsl-init.js"
   },
   "exports": {
     ".": {
@@ -16,7 +17,28 @@
   "scripts": {
     "test": "node test/index.js",
     "check": "node bin/tsl.js check",
-    "compile": "node bin/tsl.js compile"
+    "compile": "node bin/tsl.js compile",
+    "lint": "eslint src/**/*.js test/**/*.js",
+    "lint:fix": "eslint src/**/*.js test/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\" \"test/**/*.js\"",
+    "precommit": "npm run lint && npm run format:check && npm test",
+    "build": "rollup -c",
+    "build:dev": "NODE_ENV=development rollup -c",
+    "build:prod": "NODE_ENV=production rollup -c",
+    "prebuild": "rimraf dist",
+    "postbuild": "node scripts/copy-files.js",
+    "version": "node scripts/version.js",
+    "version:major": "node scripts/version.js major",
+    "version:minor": "node scripts/version.js minor",
+    "version:patch": "node scripts/version.js patch",
+    "version:premajor": "node scripts/version.js premajor --pre alpha",
+    "version:preminor": "node scripts/version.js preminor --pre alpha",
+    "version:prepatch": "node scripts/version.js prepatch --pre alpha",
+    "version:prerelease": "node scripts/version.js prerelease --pre alpha",
+    "release": "npm run build && npm run version:patch && npm publish",
+    "release:major": "npm run build && npm run version:major && npm publish",
+    "release:minor": "npm run build && npm run version:minor && npm publish"
   },
   "dependencies": {
     "acorn": "^8.11.3",
@@ -25,6 +47,18 @@
     "escodegen": "^2.1.0",
     "estraverse": "^5.3.0",
     "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.2.5",
+    "mocha": "^10.2.0",
+    "chai": "^4.3.10",
+    "rollup": "^4.9.6",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rimraf": "^5.0.5"
   },
   "keywords": [
     "typescript",
@@ -48,6 +82,7 @@
   "files": [
     "src",
     "bin",
+    "dist",
     "README.md",
     "LICENSE"
   ],
